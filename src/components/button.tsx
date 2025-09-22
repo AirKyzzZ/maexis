@@ -29,16 +29,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles = {
       primary: `
-        bg-[var(--color-primary)] text-white
-        hover:bg-[var(--color-primary)]/90
+        bg-[var(--color-primary)] !text-white
+        hover:bg-[var(--color-primary)]/90 hover:!text-white
         focus:ring-[var(--color-primary)]/50
         shadow-lg hover:shadow-xl
         before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
         before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700
       `,
       secondary: `
-        bg-[var(--color-secondary)] text-white
-        hover:bg-[var(--color-secondary)]/90
+        bg-[var(--color-secondary)] !text-white
+        hover:bg-[var(--color-secondary)]/90 hover:!text-white
         focus:ring-[var(--color-secondary)]/50
         shadow-lg hover:shadow-xl
         before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
@@ -47,10 +47,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       outline: `
         border-2 border-[var(--color-primary)] text-[var(--color-primary)]
         bg-transparent
-        hover:bg-[var(--color-primary)] hover:text-white
+        hover:bg-[var(--color-primary)] hover:!text-white
         focus:ring-[var(--color-primary)]/50
         dark:border-[var(--color-primary)] dark:text-[var(--color-primary)]
-        dark:hover:bg-[var(--color-primary)] dark:hover:text-white
+        dark:hover:bg-[var(--color-primary)] dark:hover:!text-white
       `
     };
 

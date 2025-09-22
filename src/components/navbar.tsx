@@ -16,20 +16,13 @@ export default function Navbar() {
       className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4"
       onClick={() => setIsApplicationsOpen(false)}
     >
-      <div className="bg-background rounded-full shadow-lg border-2 border-gray-200"
-           style={{ 
-             '--primary': '#4FD1C5',
-             '--secondary': '#1D3A80',
-             '--background': '#F5F5F5',
-             '--foreground': '#333333'
-           } as React.CSSProperties}>
+      <div className="bg-[var(--color-background)] rounded-full shadow-lg border-2 border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between px-6 py-3">
           {/* Left side - Navigation links */}
           <div className="hidden md:flex items-center space-x-1">
             <Link 
               href="/" 
-              className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-              style={{ color: 'var(--foreground)' }}
+              className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
             >
               Home
             </Link>
@@ -41,8 +34,7 @@ export default function Navbar() {
                   e.stopPropagation();
                   setIsApplicationsOpen(!isApplicationsOpen);
                 }}
-                className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200 flex items-center space-x-1"
-                style={{ color: 'var(--foreground)' }}
+                className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 flex items-center space-x-1 text-foreground dark:text-white"
               >
                 <span>Applications</span>
                 <svg
@@ -63,15 +55,13 @@ export default function Navbar() {
             
             <Link 
               href="/pricing" 
-              className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-              style={{ color: 'var(--foreground)' }}
+              className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
             >
               Pricing
             </Link>
             <Link 
               href="/contact" 
-              className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-              style={{ color: 'var(--foreground)' }}
+              className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
             >
               Contact
             </Link>
@@ -92,8 +82,8 @@ export default function Navbar() {
 
           {/* Right side - Theme, Language, CTA buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            {/* Theme toggle (pill) */}
-            <ToggleTheme className="px-1 py-1 rounded-full hover:bg-gray-100 transition-all duration-300" />
+            {/* Theme toggle (pill) - no hover bg in dark mode */}
+            <ToggleTheme className="px-1 py-1 rounded-full hover:bg-gray-100 dark:hover:bg-transparent dark:hover:!bg-transparent transition-all duration-300" />
 
             {/* Language selector (FR + chevron with list) */}
             <div className="relative">
@@ -102,8 +92,7 @@ export default function Navbar() {
                   e.stopPropagation();
                   setIsLanguageOpen(!isLanguageOpen);
                 }}
-                className="px-3 py-2 text-sm font-medium rounded-full hover:bg-gray-100 transition-all flex items-center gap-1"
-                style={{ color: 'var(--foreground)' }}
+                className="px-3 py-2 text-sm font-medium rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all flex items-center gap-1 text-foreground"
                 aria-haspopup="listbox"
                 aria-expanded={isLanguageOpen}
               >
@@ -119,11 +108,10 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            <Link href="/login" className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-              style={{ color: 'var(--foreground)' }}>
+            <Link href="/login" className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white">
               Login
             </Link>
-            <Button variant="primary" size="sm">Sign Up</Button>
+            <Button variant="primary" size="sm" className="text-white">Sign Up</Button>
           </div>
 
           <button
@@ -150,8 +138,7 @@ export default function Navbar() {
             <div className="flex flex-col space-y-2 mt-4">
               <Link 
                 href="/" 
-                className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-                style={{ color: 'var(--foreground)' }}
+                className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
                 onClick={() => setIsOpen(false)}
               >
                 Home
@@ -159,30 +146,27 @@ export default function Navbar() {
               
               {/* Mobile Applications Section */}
               <div>
-                <div className="px-4 py-2 text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+                <div className="px-4 py-2 text-sm font-semibold text-foreground">
                   Applications
                 </div>
                 <div className="ml-4 space-y-1">
                   <Link 
                     href="/finance" 
-                    className="block px-4 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-                    style={{ color: 'var(--foreground)' }}
+                    className="block px-4 py-2 text-sm hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
                     onClick={() => setIsOpen(false)}
                   >
                     Financial Management
                   </Link>
                   <Link 
                     href="/finance/budget" 
-                    className="block px-4 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-                    style={{ color: 'var(--foreground)' }}
+                    className="block px-4 py-2 text-sm hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
                     onClick={() => setIsOpen(false)}
                   >
                     Budget Planning
                   </Link>
                   <Link 
                     href="/finance/expenses" 
-                    className="block px-4 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-                    style={{ color: 'var(--foreground)' }}
+                    className="block px-4 py-2 text-sm hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
                     onClick={() => setIsOpen(false)}
                   >
                     Expense Tracking
@@ -191,16 +175,14 @@ export default function Navbar() {
               </div>
               <Link 
                 href="/pricing" 
-                className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-                style={{ color: 'var(--foreground)' }}
+                className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
                 onClick={() => setIsOpen(false)}
               >
                 Pricing
               </Link>
               <Link 
                 href="/contact" 
-                className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-                style={{ color: 'var(--foreground)' }}
+                className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
                 onClick={() => setIsOpen(false)}
               >
                 Contact
@@ -208,8 +190,7 @@ export default function Navbar() {
               <div className="flex flex-col space-y-2 pt-2 border-t border-gray-200/50 dark:border-gray-700/50">
                 <Link 
                   href="/login" 
-                  className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-                  style={{ color: 'var(--foreground)' }}
+                  className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   Login
@@ -217,7 +198,7 @@ export default function Navbar() {
                 <Link 
                   href="/signup" 
                   className="px-4 py-2 text-sm font-medium text-white rounded-full transition-all duration-200 shadow-md hover:shadow-lg text-center"
-                  style={{ background: 'linear-gradient(135deg, var(--primary), var(--secondary))' }}
+                  style={{ background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))' }}
                   onClick={() => setIsOpen(false)}
                 >
                   Sign Up
@@ -236,30 +217,27 @@ export default function Navbar() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Finance Section */}
                 <div>
-                  <h3 className="text-sm font-semibold mb-3" style={{ color: 'var(--foreground)' }}>
+                  <h3 className="text-sm font-semibold mb-3 text-foreground">
                     Finance
                   </h3>
                   <div className="space-y-2">
                     <Link 
                       href="/finance" 
-                      className="block px-3 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-50 rounded-lg transition-all duration-200"
-                      style={{ color: 'var(--foreground)' }}
+                      className="block px-3 py-2 text-sm hover:text-[var(--color-primary)] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 text-foreground"
                       onClick={() => setIsApplicationsOpen(false)}
                     >
                       Financial Management
                     </Link>
                     <Link 
                       href="/finance/budget" 
-                      className="block px-3 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-50 rounded-lg transition-all duration-200"
-                      style={{ color: 'var(--foreground)' }}
+                      className="block px-3 py-2 text-sm hover:text-[var(--color-primary)] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 text-foreground"
                       onClick={() => setIsApplicationsOpen(false)}
                     >
                       Budget Planning
                     </Link>
                     <Link 
                       href="/finance/expenses" 
-                      className="block px-3 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-50 rounded-lg transition-all duration-200"
-                      style={{ color: 'var(--foreground)' }}
+                      className="block px-3 py-2 text-sm hover:text-[var(--color-primary)] hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 text-foreground"
                       onClick={() => setIsApplicationsOpen(false)}
                     >
                       Expense Tracking
@@ -269,34 +247,34 @@ export default function Navbar() {
 
                 {/* Placeholder Sections */}
                 <div>
-                  <h3 className="text-sm font-semibold mb-3 opacity-60" style={{ color: 'var(--foreground)' }}>
+                  <h3 className="text-sm font-semibold mb-3 opacity-60 text-foreground">
                     Productivity
                   </h3>
                   <div className="space-y-2">
-                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
                       Task Management
                     </div>
-                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
                       Project Planning
                     </div>
-                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
                       Team Collaboration
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-semibold mb-3 opacity-60" style={{ color: 'var(--foreground)' }}>
+                  <h3 className="text-sm font-semibold mb-3 opacity-60 text-foreground">
                     Analytics
                   </h3>
                   <div className="space-y-2">
-                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
                       Business Intelligence
                     </div>
-                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
                       Data Visualization
                     </div>
-                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
                       Performance Metrics
                     </div>
                   </div>
