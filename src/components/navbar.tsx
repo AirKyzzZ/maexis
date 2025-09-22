@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 
 export default function Navbar() {
@@ -8,7 +9,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4">
-      <div className="bg-white rounded-full shadow-lg border-2 border-gray-200"
+      <div className="bg-background rounded-full shadow-lg border-2 border-gray-200"
            style={{ 
              '--primary': '#4FD1C5',
              '--secondary': '#1D3A80',
@@ -16,13 +17,7 @@ export default function Navbar() {
              '--foreground': '#333333'
            } as React.CSSProperties}>
         <div className="flex items-center justify-between px-6 py-3">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, var(--primary), var(--secondary))' }}>
-              <span className="text-white font-bold text-lg">M</span>
-            </div>
-            <span className="text-xl font-bold font-sans" style={{ color: 'var(--foreground)' }}>Maexis</span>
-          </Link>
-
+          {/* Left side - Navigation links */}
           <div className="hidden md:flex items-center space-x-1">
             <Link 
               href="/" 
@@ -47,6 +42,20 @@ export default function Navbar() {
             </Link>
           </div>
 
+          {/* Center - Logo */}
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <Link href="/" className="flex items-center">
+              <Image 
+                src="/logoWhite.svg" 
+                alt="Maexis logo" 
+                width={42} 
+                height={42}
+                className="w-12 h-12"
+              />
+            </Link>
+          </div>
+
+          {/* Right side - CTA buttons */}
           <div className="hidden md:flex items-center space-x-3">
             <Link 
               href="/login" 
