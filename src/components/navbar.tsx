@@ -4,10 +4,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import Button  from '@/src/components/button';
+import ToggleTheme from '@/src/components/toggleTheme';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isApplicationsOpen, setIsApplicationsOpen] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
 
   return (
     <nav 
@@ -88,8 +90,35 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Right side - CTA buttons */}
+          {/* Right side - Theme, Language, CTA buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Theme toggle (pill) */}
+            <ToggleTheme className="px-1 py-1 rounded-full hover:bg-gray-100 transition-all duration-300" />
+
+            {/* Language selector (FR + chevron with list) */}
+            <div className="relative">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsLanguageOpen(!isLanguageOpen);
+                }}
+                className="px-3 py-2 text-sm font-medium rounded-full hover:bg-gray-100 transition-all flex items-center gap-1"
+                style={{ color: 'var(--foreground)' }}
+                aria-haspopup="listbox"
+                aria-expanded={isLanguageOpen}
+              >
+                FR
+                <svg className={`w-4 h-4 transition-transform ${isLanguageOpen ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7 10l5 5 5-5z" />
+                </svg>
+              </button>
+              {isLanguageOpen && (
+                <div className="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border border-gray-200 py-1 z-50" onClick={(e)=>e.stopPropagation()}>
+                  <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100" onClick={()=>setIsLanguageOpen(false)}>FR</button>
+                  <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100" onClick={()=>setIsLanguageOpen(false)}>EN</button>
+                </div>
+              )}
+            </div>
             <Link href="/login" className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
               style={{ color: 'var(--foreground)' }}>
               Login
