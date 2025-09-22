@@ -3,12 +3,17 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import Button  from '@/src/components/button';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isApplicationsOpen, setIsApplicationsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4">
+    <nav 
+      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4"
+      onClick={() => setIsApplicationsOpen(false)}
+    >
       <div className="bg-background rounded-full shadow-lg border-2 border-gray-200"
            style={{ 
              '--primary': '#4FD1C5',
@@ -26,6 +31,34 @@ export default function Navbar() {
             >
               Home
             </Link>
+            
+            {/* Applications Dropdown */}
+            <div className="relative">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsApplicationsOpen(!isApplicationsOpen);
+                }}
+                className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200 flex items-center space-x-1"
+                style={{ color: 'var(--foreground)' }}
+              >
+                <span>Applications</span>
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${isApplicationsOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {/* Dropdown Menu (desktop popover) disabled in favor of full-width bar below */}
+              {false && isApplicationsOpen && (
+                <div className="hidden" />
+              )}
+            </div>
+            
             <Link 
               href="/pricing" 
               className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
@@ -56,21 +89,12 @@ export default function Navbar() {
           </div>
 
           {/* Right side - CTA buttons */}
-          <div className="hidden md:flex items-center space-x-3">
-            <Link 
-              href="/login" 
-              className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
-              style={{ color: 'var(--foreground)' }}
-            >
+          <div className="hidden md:flex items-center space-x-4">
+            <Link href="/login" className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
+              style={{ color: 'var(--foreground)' }}>
               Login
             </Link>
-            <Link 
-              href="/signup" 
-              className="px-4 py-2 text-sm font-medium text-white rounded-full transition-all duration-200 shadow-md hover:shadow-lg"
-              style={{ background: 'linear-gradient(135deg, var(--primary), var(--secondary))' }}
-            >
-              Sign Up
-            </Link>
+            <Button variant="primary" size="sm">Sign Up</Button>
           </div>
 
           <button
@@ -103,6 +127,39 @@ export default function Navbar() {
               >
                 Home
               </Link>
+              
+              {/* Mobile Applications Section */}
+              <div>
+                <div className="px-4 py-2 text-sm font-semibold" style={{ color: 'var(--foreground)' }}>
+                  Applications
+                </div>
+                <div className="ml-4 space-y-1">
+                  <Link 
+                    href="/finance" 
+                    className="block px-4 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
+                    style={{ color: 'var(--foreground)' }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Financial Management
+                  </Link>
+                  <Link 
+                    href="/finance/budget" 
+                    className="block px-4 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
+                    style={{ color: 'var(--foreground)' }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Budget Planning
+                  </Link>
+                  <Link 
+                    href="/finance/expenses" 
+                    className="block px-4 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
+                    style={{ color: 'var(--foreground)' }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Expense Tracking
+                  </Link>
+                </div>
+              </div>
               <Link 
                 href="/pricing" 
                 className="px-4 py-2 text-sm font-medium hover:text-[var(--primary)] hover:bg-gray-100 rounded-full transition-all duration-200"
@@ -141,6 +198,85 @@ export default function Navbar() {
           </div>
         )}
       </div>
+
+      {/* Full-width submenu bar (desktop only) */}
+      {isApplicationsOpen && (
+        <div className="hidden md:block mt-2 w-full max-w-6xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 py-4">
+            <div className="px-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Finance Section */}
+                <div>
+                  <h3 className="text-sm font-semibold mb-3" style={{ color: 'var(--foreground)' }}>
+                    Finance
+                  </h3>
+                  <div className="space-y-2">
+                    <Link 
+                      href="/finance" 
+                      className="block px-3 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-50 rounded-lg transition-all duration-200"
+                      style={{ color: 'var(--foreground)' }}
+                      onClick={() => setIsApplicationsOpen(false)}
+                    >
+                      Financial Management
+                    </Link>
+                    <Link 
+                      href="/finance/budget" 
+                      className="block px-3 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-50 rounded-lg transition-all duration-200"
+                      style={{ color: 'var(--foreground)' }}
+                      onClick={() => setIsApplicationsOpen(false)}
+                    >
+                      Budget Planning
+                    </Link>
+                    <Link 
+                      href="/finance/expenses" 
+                      className="block px-3 py-2 text-sm hover:text-[var(--primary)] hover:bg-gray-50 rounded-lg transition-all duration-200"
+                      style={{ color: 'var(--foreground)' }}
+                      onClick={() => setIsApplicationsOpen(false)}
+                    >
+                      Expense Tracking
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Placeholder Sections */}
+                <div>
+                  <h3 className="text-sm font-semibold mb-3 opacity-60" style={{ color: 'var(--foreground)' }}>
+                    Productivity
+                  </h3>
+                  <div className="space-y-2">
+                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                      Task Management
+                    </div>
+                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                      Project Planning
+                    </div>
+                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                      Team Collaboration
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-semibold mb-3 opacity-60" style={{ color: 'var(--foreground)' }}>
+                    Analytics
+                  </h3>
+                  <div className="space-y-2">
+                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                      Business Intelligence
+                    </div>
+                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                      Data Visualization
+                    </div>
+                    <div className="px-3 py-2 text-sm opacity-60" style={{ color: 'var(--foreground)' }}>
+                      Performance Metrics
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
