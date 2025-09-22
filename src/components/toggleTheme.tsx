@@ -1,8 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Sun, Moon } from 'lucide-react';
 
-export default function ToggleTheme() {
+type ToggleThemeProps = {
+  className?: string;
+};
+
+export default function ToggleTheme({ className }: ToggleThemeProps) {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -32,38 +37,40 @@ export default function ToggleTheme() {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-4 right-4 z-50 p-3 rounded-full bg-[var(--color-background)] border border-[var(--color-foreground)]/20 hover:bg-[var(--color-foreground)]/10 transition-all duration-300"
+      className={className}
       aria-label="Toggle theme"
+      role="switch"
+      aria-checked={isDark}
+      title={isDark ? 'Switch to light' : 'Switch to dark'}
     >
-      {isDark ? (
-        <svg
-          className="w-5 h-5 text-[var(--color-foreground)]"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+      {/* Track */}
+      <span
+        className={`relative inline-flex items-center h-6 w-10 rounded-full transition-colors duration-300 ${
+          isDark ? 'bg-[var(--color-foreground)]/25' : 'bg-[var(--color-foreground)]/15'
+        }`}
+      >
+        {/* Knob with icon inside */}
+        <span
+          className={`relative inline-flex items-center justify-center h-5 w-5 rounded-full bg-white shadow-[0_2px_6px_rgba(0,0,0,0.2)] transform transition-transform duration-300 ease-out ${
+            isDark ? 'translate-x-4' : 'translate-x-1'
+          }`}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          <Sun
+            className={`absolute w-3.5 h-3.5 transition-opacity ${
+              isDark ? 'opacity-0' : 'opacity-100'
+            }`}
+            style={{ color: 'var(--color-primary)' }}
+            aria-hidden="true"
           />
-        </svg>
-      ) : (
-        <svg
-          className="w-5 h-5 text-[var(--color-foreground)]"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          <Moon
+            className={`absolute w-3.5 h-3.5 transition-opacity ${
+              isDark ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ color: 'var(--color-secondary)' }}
+            aria-hidden="true"
           />
-        </svg>
-      )}
+        </span>
+      </span>
     </button>
   );
 }
