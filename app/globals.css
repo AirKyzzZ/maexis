@@ -9,8 +9,23 @@
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
+/* Dark mode theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #1a1a1a;
+    --color-foreground: #f5f5f5;
+  }
+}
+
+/* Manual dark mode class */
+.dark {
+  --color-background: #1a1a1a;
+  --color-foreground: #f5f5f5;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-bricolage-grotesk), ui-sans-serif, system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
