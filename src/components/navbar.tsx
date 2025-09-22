@@ -75,7 +75,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="md:hidden p-2 rounded-full hover:bg-gray-100 transition-colors"
           >
             <svg
               className="w-6 h-6 text-gray-700 dark:text-gray-300"
