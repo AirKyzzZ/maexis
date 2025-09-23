@@ -138,3 +138,13 @@ body {
 .scroll-dots:nth-child(3) {
   animation-delay: 0.4s;
 }
+
+/* Logo visibility control independent of Tailwind dark variant */
+.logo-light { display: inline-block; }
+.logo-dark { display: none; }
+
+.dark .logo-light { display: none; }
+.dark .logo-dark { display: inline-block; }
+
+.light .logo-light { display: inline-block; }
+.light .logo-dark { display: none; }

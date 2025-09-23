@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button  from '@/src/components/button';
 import ToggleTheme from '@/src/components/toggleTheme';
 
@@ -10,6 +10,29 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isApplicationsOpen, setIsApplicationsOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const getInitial = () => {
+      try {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') return true;
+        if (saved === 'light') return false;
+      } catch {}
+      if (document.documentElement.classList.contains('dark')) return true;
+      if (document.documentElement.classList.contains('light')) return false;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    };
+
+    setIsDarkTheme(getInitial());
+
+    const observer = new MutationObserver(() => {
+      setIsDarkTheme(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <nav 
@@ -70,12 +93,13 @@ export default function Navbar() {
           {/* Center - Logo */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <Link href="/" className="flex items-center">
-              <Image 
-                src="/logoWhite.svg" 
-                alt="Maexis logo" 
-                width={42} 
+              <Image
+                src={isDarkTheme ? '/logoBlack.svg' : '/logoWhite.svg'}
+                alt="Maexis logo"
+                width={42}
                 height={42}
                 className="w-12 h-12"
+                priority
               />
             </Link>
           </div>
