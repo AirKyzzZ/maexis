@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Button from "@/src/components/button";
 import ScrollIcon from "@/src/components/scrollIcon";
+import Clients from '@/src/components/clients';
 
 export default function Home() {
   return (

@@ -138,3 +138,67 @@ body {
 .scroll-dots:nth-child(3) {
   animation-delay: 0.4s;
 }
+
+/* Clients marquee */
+@keyframes clients-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.clients-marquee {
+  animation: clients-marquee 30s linear infinite;
+}
+
+.clients-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Clients chips */
+.clients-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: rgba(var(--color-foreground-rgb), 0.9);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border: 1px solid rgba(var(--color-foreground-rgb), 0.08);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset, 0 1px 2px rgba(0,0,0,0.05);
+  backdrop-filter: blur(4px);
+}
+
+@media (min-width: 768px) {
+  .clients-chip {
+    height: 38px;
+    padding: 0 16px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Edge fades */
+.clients-fade-left,
+.clients-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  pointer-events: none;
+}
+
+.clients-fade-left {
+  left: 0;
+  background: linear-gradient(90deg, var(--color-background), transparent);
+}
+
+.clients-fade-right {
+  right: 0;
+  background: linear-gradient(270deg, var(--color-background), transparent);
+}
