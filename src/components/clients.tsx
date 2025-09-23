@@ -27,7 +27,7 @@ const Clients = () => {
         aria-hidden
       >
         <div
-          className="h-full w-full opacity-10"
+          className="h-full w-full"
           style={{
             background: 'linear-gradient(90deg, var(--color-primary), var(--color-secondary))',
           }}
