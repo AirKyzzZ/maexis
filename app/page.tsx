@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ScrollIcon from "@/src/components/scrollIcon";
 import Hero from "@/src/components/hero";
+import Clients from '@/src/components/clients';
 
 export default function Home() {
   return (

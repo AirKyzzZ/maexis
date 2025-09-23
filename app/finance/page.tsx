@@ -1,4 +1,5 @@
 import Hero from '@/src/components/hero';
+import Clients from '@/src/components/clients';
 
 export default function FinancePage() {
   return (
@@ -24,6 +25,7 @@ export default function FinancePage() {
           />
         </div>
       </section>
+      <Clients />
       {/* Autres sections à venir */}
     </div>
   );
