@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/src/components/navbar";
+import RouteLoader from "@/src/components/routeLoader";
+import Loading from "@/app/loading";
+import { Suspense } from "react";
 
 const bricolageGrotesk = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesk",
@@ -27,8 +30,9 @@ export default function RootLayout({
       <body
         className={`${bricolageGrotesk.variable} antialiased`}
       >
+        <RouteLoader />
         <Navbar />
-        {children}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
       </body>
     </html>
   );
