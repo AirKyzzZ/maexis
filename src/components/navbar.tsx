@@ -275,7 +275,7 @@ export default function Navbar() {
       {/* Full-width submenu bar (desktop only) */}
       {isApplicationsOpen && (
         <div className="hidden md:block mt-2 w-full max-w-6xl mx-auto" ref={applicationsMenuRef} onMouseEnter={clearHoverCloseTimeout} onMouseLeave={scheduleHoverClose}>
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 py-4">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 py-4 dark:bg-[var(--color-background)] dark:border-gray-700">
             <div className="px-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Finance Section */}
@@ -286,21 +286,21 @@ export default function Navbar() {
                   <div className="space-y-2">
                     <Link 
                       href="/finance" 
-                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
+                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground dark:text-white hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
                       onClick={() => setIsApplicationsOpen(false)}
                     >
                       Financial Management
                     </Link>
                     <Link 
                       href="/finance/budget" 
-                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
+                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground dark:text-white hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
                       onClick={() => setIsApplicationsOpen(false)}
                     >
                       Budget Planning
                     </Link>
                     <Link 
                       href="/finance/expenses" 
-                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
+                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground dark:text-white hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
                       onClick={() => setIsApplicationsOpen(false)}
                     >
                       Expense Tracking
