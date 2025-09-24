@@ -174,9 +174,9 @@ export default function Navbar() {
                 </svg>
               </button>
               {isLanguageOpen && (
-                <div className="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border border-gray-200 py-1 z-50" onClick={(e)=>e.stopPropagation()}>
-                  <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100" onClick={()=>{i18n.changeLanguage('fr'); setIsLanguageOpen(false);}}>FR</button>
-                  <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100" onClick={()=>{i18n.changeLanguage('en'); setIsLanguageOpen(false);}}>EN</button>
+                <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-[var(--color-background)] rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50 text-foreground" onClick={(e)=>e.stopPropagation()}>
+                  <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg" onClick={()=>{i18n.changeLanguage('fr'); setIsLanguageOpen(false);}}>FR</button>
+                  <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg" onClick={()=>{i18n.changeLanguage('en'); setIsLanguageOpen(false);}}>EN</button>
                 </div>
               )}
             </div>
