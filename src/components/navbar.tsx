@@ -39,13 +39,13 @@ export default function Navbar() {
       className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4"
       onClick={() => setIsApplicationsOpen(false)}
     >
-      <div className="bg-[var(--color-background)] rounded-full shadow-lg border-2 border-gray-200 dark:border-gray-700">
-        <div className="flex items-center justify-between px-6 py-3">
+      <div className="bg-[var(--color-background)] rounded-full shadow-lg border-1 border-[var(--color-primary)] dark:border-[var(--color-primary)]">
+        <div className="relative flex items-center justify-between px-6 py-3">
           {/* Left side - Navigation links */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-1 relative z-10">
             <Link 
               href="/" 
-              className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
+              className="px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 text-foreground dark:text-white hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
             >
               Home
             </Link>
@@ -57,7 +57,7 @@ export default function Navbar() {
                   e.stopPropagation();
                   setIsApplicationsOpen(!isApplicationsOpen);
                 }}
-                className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 flex items-center space-x-1 text-foreground dark:text-white"
+                className="px-4 py-2 text-sm font-medium hover:text-[var(--color-secondary)] hover:bg-[var(--color-primary)] dark:hover:bg-primary dark:hover:text-foreground rounded-full transition-all duration-200 flex items-center space-x-1 text-foreground dark:text-white"
               >
                 <span>Applications</span>
                 <svg
@@ -91,7 +91,7 @@ export default function Navbar() {
           </div>
 
           {/* Center - Logo */}
-          <div className="absolute left-1/2 transform -translate-x-1/2">
+          <div className="absolute left-1/2 transform -translate-x-1/2 z-0 pointer-events-none">
             <Link href="/" className="flex items-center">
               <Image
                 src={isDarkTheme ? '/logoBlack.svg' : '/logoWhite.svg'}
@@ -105,7 +105,7 @@ export default function Navbar() {
           </div>
 
           {/* Right side - Theme, Language, CTA buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4 relative z-10">
             {/* Theme toggle (pill) - no hover bg in dark mode */}
             <ToggleTheme className="px-1 py-1 rounded-full hover:bg-gray-100 dark:hover:bg-transparent dark:hover:!bg-transparent transition-all duration-300" />
 
@@ -162,7 +162,7 @@ export default function Navbar() {
             <div className="flex flex-col space-y-2 mt-4">
               <Link 
                 href="/" 
-                className="px-4 py-2 text-sm font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white rounded-full transition-all duration-200 text-foreground dark:text-white"
+                className="px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 text-foreground dark:text-white hover:bg-[var(--color-primary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
                 onClick={() => setIsOpen(false)}
               >
                 Home
@@ -271,34 +271,34 @@ export default function Navbar() {
 
                 {/* Placeholder Sections */}
                 <div>
-                  <h3 className="text-sm font-semibold mb-3 opacity-60 text-foreground">
+                  <h3 className="text-sm font-semibold mb-3 opacity-60 text-foreground dark:text-background">
                     Productivity
                   </h3>
                   <div className="space-y-2">
-                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
+                    <div className="px-3 py-2 text-sm opacity-60 text-foreground dark:text-background">
                       Task Management
                     </div>
-                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
+                    <div className="px-3 py-2 text-sm opacity-60 text-background">
                       Project Planning
                     </div>
-                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
+                    <div className="px-3 py-2 text-sm opacity-60 text-background">
                       Team Collaboration
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-semibold mb-3 opacity-60 text-foreground">
+                  <h3 className="text-sm font-semibold mb-3 opacity-60 text-background">
                     Analytics
                   </h3>
                   <div className="space-y-2">
-                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
+                    <div className="px-3 py-2 text-sm opacity-60 text-background">
                       Business Intelligence
                     </div>
-                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
+                    <div className="px-3 py-2 text-sm opacity-60 text-background">
                       Data Visualization
                     </div>
-                    <div className="px-3 py-2 text-sm opacity-60 text-foreground">
+                    <div className="px-3 py-2 text-sm opacity-60 text-background">
                       Performance Metrics
                     </div>
                   </div>
