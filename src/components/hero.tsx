@@ -3,6 +3,13 @@
 import Button from '@/src/components/button';
 import React, { useEffect, useState } from 'react';
 
+type RevealCSSVars = {
+  ['--reveal-delay']?: string;
+  ['--reveal-duration']?: string;
+};
+
+const withRevealVars = (vars: RevealCSSVars): React.CSSProperties => vars as React.CSSProperties;
+
 type ButtonConfig = {
   label: string;
   variant?: 'primary' | 'secondary' | 'outline';
@@ -39,15 +46,15 @@ export default function Hero({
 
   return (
     <div className={"text-center px-8 sm:px-16 lg:px-24 " + (className ?? '')}>
-      <div className={mounted ? 'reveal' : ''} style={{ ['--reveal-delay' as any]: '80ms' }}>
+      <div className={mounted ? 'reveal' : ''} style={withRevealVars({ ['--reveal-delay']: '80ms' })}>
         {title}
       </div>
-      <div className={mounted ? 'reveal' : ''} style={{ ['--reveal-delay' as any]: '180ms', ['--reveal-duration' as any]: '720ms' }}>
+      <div className={mounted ? 'reveal' : ''} style={withRevealVars({ ['--reveal-delay']: '180ms', ['--reveal-duration']: '720ms' })}>
         {description}
       </div>
 
       {(primary || secondary) && (
-        <div className={"flex gap-4 items-center justify-center flex-col sm:flex-row mb-4 " + (mounted ? 'reveal' : '')} style={{ ['--reveal-delay' as any]: '280ms' }}>
+        <div className={"flex gap-4 items-center justify-center flex-col sm:flex-row mb-4 " + (mounted ? 'reveal' : '')} style={withRevealVars({ ['--reveal-delay']: '280ms' })}>
           {primary && (
             <Button
               variant={primary.variant ?? 'primary'}
@@ -72,7 +79,7 @@ export default function Hero({
       )}
 
       {disclaimerText && (
-        <p className={(mounted ? 'reveal ' : '') + "text-xs text-foreground-50 text-center"} style={{ ['--reveal-delay' as any]: '380ms' }}>
+        <p className={(mounted ? 'reveal ' : '') + "text-xs text-foreground-50 text-center"} style={withRevealVars({ ['--reveal-delay']: '380ms' })}>
           {disclaimerText}
         </p>
       )}
