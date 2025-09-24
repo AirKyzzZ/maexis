@@ -3,7 +3,9 @@ import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/src/components/navbar";
 import I18nProvider from "@/src/components/I18nProvider";
-// i18n is initialized client-side via I18nProvider
+import RouteLoader from "@/src/components/routeLoader";
+import Loading from "@/app/loading";
+import { Suspense } from "react";
 
 const bricolageGrotesk = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesk",
@@ -31,8 +33,9 @@ export default function RootLayout({
       >
         <I18nProvider>
           <Navbar />
-          {children}
+          <Suspense fallback={<Loading />}>{children}</Suspense>
         </I18nProvider>
+        <RouteLoader />
       </body>
     </html>
   );

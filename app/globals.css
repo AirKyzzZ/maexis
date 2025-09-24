@@ -91,6 +91,61 @@ body {
   animation: gradient-shift 6s linear infinite;
 }
 
+/* Entry reveal animations */
+@keyframes reveal-up {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes reveal-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Utility: apply reveal animation using CSS variables for timing/control */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  will-change: opacity, transform, filter;
+  animation-name: var(--reveal-animation, reveal-up);
+  animation-duration: var(--reveal-duration, 700ms);
+  animation-timing-function: var(--reveal-easing, cubic-bezier(0.22, 1, 0.36, 1));
+  animation-delay: var(--reveal-delay, 0ms);
+  animation-fill-mode: forwards;
+}
+
+/* Navbar specific helper */
+.animate-navbar-in {
+  animation: reveal-down 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Floating decorative icons */
+@keyframes float-slow {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+.float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
 /* Scroll icon idle animation */
 @keyframes scroll-float {
   0%, 100% {

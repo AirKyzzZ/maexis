@@ -15,6 +15,7 @@ export default function Navbar() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [animateIn, setAnimateIn] = useState(false);
   const applicationsTriggerRef = useRef<HTMLDivElement | null>(null);
   const applicationsMenuRef = useRef<HTMLDivElement | null>(null);
   const hoverCloseTimeoutRef = useRef<number | null>(null);
@@ -57,6 +58,9 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsMounted(true);
+    // trigger entry animation after mount to ensure CSS transitions apply
+    const id = window.setTimeout(() => setAnimateIn(true), 40);
+    return () => window.clearTimeout(id);
   }, []);
 
   useEffect(() => {
@@ -79,7 +83,7 @@ export default function Navbar() {
 
   return (
     <nav 
-      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4"
+      className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4 ${animateIn ? 'animate-navbar-in' : 'opacity-0 -translate-y-2'}`}
     >
       <div className="bg-[var(--color-background)] rounded-2xl md:rounded-full shadow-lg border border-[var(--color-primary)] dark:border-[var(--color-primary)]">
         <div className="relative flex items-center justify-between px-6 py-3">
@@ -278,7 +282,7 @@ export default function Navbar() {
       {/* Full-width submenu bar (desktop only) */}
       {isApplicationsOpen && (
         <div className="hidden md:block mt-2 w-full max-w-6xl mx-auto" ref={applicationsMenuRef} onMouseEnter={clearHoverCloseTimeout} onMouseLeave={scheduleHoverClose}>
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 py-4">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 py-4 dark:bg-[var(--color-background)] dark:border-gray-700">
             <div className="px-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Finance Section */}
@@ -289,21 +293,21 @@ export default function Navbar() {
                   <div className="space-y-2">
                     <Link 
                       href="/finance" 
-                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
+                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground dark:text-white hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
                       onClick={() => setIsApplicationsOpen(false)}
                     >
                       Financial Management
                     </Link>
                     <Link 
                       href="/finance/budget" 
-                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
+                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground dark:text-white hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
                       onClick={() => setIsApplicationsOpen(false)}
                     >
                       Budget Planning
                     </Link>
                     <Link 
                       href="/finance/expenses" 
-                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
+                      className="block px-3 py-2 text-sm rounded-lg transition-all duration-200 text-foreground dark:text-white hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white"
                       onClick={() => setIsApplicationsOpen(false)}
                     >
                       Expense Tracking

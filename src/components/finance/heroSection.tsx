@@ -20,6 +20,14 @@ export default function HeroSection() {
         aria-hidden
       />
 
+      {/* Decorative floating finance-themed icon */}
+      <svg className="absolute right-10 top-24 w-8 h-8 text-[var(--color-secondary)] opacity-70 float-slow" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <path d="M4 4h16v2H4zM4 18h16v2H4zM6 8h4v8H6zM14 10h4v6h-4z"/>
+      </svg>
+      <svg className="absolute left-10 bottom-28 w-7 h-7 text-[var(--color-primary)] opacity-60 float-slow" style={{ animationDelay: '1s' }} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <path d="M3 13h4l3 7 4-14 3 7h4" stroke="currentColor" strokeWidth="2" fill="none"/>
+      </svg>
+
       <div className="max-w-6xl mx-auto relative z-10">
         <Hero
           title={(
