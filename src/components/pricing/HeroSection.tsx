@@ -4,7 +4,7 @@ import Hero from '@/src/components/hero'
 import { useTranslation } from 'react-i18next'
 
 export default function PricingHeroSection() {
-  const { t, i18n } = useTranslation('common')
+  const { t } = useTranslation('common')
   return (
     <section className="relative px-4 min-h-screen flex items-center justify-center overflow-hidden">
       <div
