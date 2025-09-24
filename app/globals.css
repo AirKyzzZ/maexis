@@ -148,23 +148,8 @@ body {
 
 .light .logo-light { display: inline-block; }
 .light .logo-dark { display: none; }
-/* Clients marquee */
-@keyframes clients-marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.clients-marquee {
-  animation: clients-marquee 30s linear infinite;
-}
-
-.clients-marquee:hover {
-  animation-play-state: paused;
-}
+/* Deprecated marquee (kept for reference) */
+/* .clients-marquee { ... } */
 
 /* Clients chips */
 .clients-chip {
@@ -193,21 +178,21 @@ body {
 }
 
 /* Edge fades */
-.clients-fade-left,
-.clients-fade-right {
+/* Edge fades removed for SVG mode */
+
+/* Angled background stripe for clients section */
+.clients-angle-bg {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 80px;
+  inset: -20%;
+  transform: rotate(-16deg);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  opacity: 0.12;
   pointer-events: none;
 }
 
-.clients-fade-left {
-  left: 0;
-  background: linear-gradient(90deg, var(--color-background), transparent);
-}
-
-.clients-fade-right {
-  right: 0;
-  background: linear-gradient(270deg, var(--color-background), transparent);
+/* High-contrast chip variant */
+.clients-chip-contrast {
+  background: color-mix(in srgb, var(--color-secondary) 18%, transparent);
+  border-color: rgba(var(--color-foreground-rgb), 0.12);
+  color: var(--color-foreground);
 }
