@@ -78,7 +78,7 @@ export default function Navbar() {
     <nav 
       className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4"
     >
-      <div className="bg-[var(--color-background)] rounded-full shadow-lg border-1 border-[var(--color-primary)] dark:border-[var(--color-primary)]">
+      <div className="bg-[var(--color-background)] rounded-2xl md:rounded-full shadow-lg border border-[var(--color-primary)] dark:border-[var(--color-primary)]">
         <div className="relative flex items-center justify-between px-6 py-3">
           {/* Left side - Navigation links */}
           <div className="hidden md:flex items-center space-x-1 relative z-10">
