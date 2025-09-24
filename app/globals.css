@@ -196,3 +196,8 @@ body {
   border-color: rgba(var(--color-foreground-rgb), 0.12);
   color: var(--color-foreground);
 }
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: 0% 0; }
+}
