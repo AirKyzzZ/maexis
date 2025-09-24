@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/src/components/navbar";
+import I18nProvider from "@/src/components/I18nProvider";
+// i18n is initialized client-side via I18nProvider
 
 const bricolageGrotesk = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesk",
@@ -23,12 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="en">
       <body
         className={`${bricolageGrotesk.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        <I18nProvider>
+          <Navbar />
+          {children}
+        </I18nProvider>
       </body>
     </html>
   );

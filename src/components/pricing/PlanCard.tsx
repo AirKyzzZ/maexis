@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '@/src/components/button'
 
+
 export type Plan = {
   name: string
   monthlyPrice: number
@@ -20,6 +21,7 @@ export default function PlanCard({ plan, billingCycle }: { plan: Plan, billingCy
   const price = billingCycle === 'annual' ? plan.annualPrice : plan.monthlyPrice
   const priceLabel = price === 0 ? 'Free' : `$${price}`
   const sublabel = price === 0 ? '' : billingCycle === 'annual' ? 'per month (billed annually)' : 'per month'
+  const annualLumpSum = billingCycle === 'annual' && plan.annualPrice > 0 ? plan.annualPrice * 12 : null
 
   return (
     <div
@@ -28,7 +30,7 @@ export default function PlanCard({ plan, billingCycle }: { plan: Plan, billingCy
     >
       {plan.highlight && (
         <div className="absolute top-4 right-4 text-xs font-semibold px-2 py-1 rounded-full"
-          style={{ background: 'color-mix(in srgb, var(--color-secondary) 18%, transparent)', color: 'var(--color-foreground)' }}>
+          style={{ background: 'var(--color-primary)', color: 'var(--color-background)' }}>
           Popular
         </div>
       )}
@@ -38,6 +40,9 @@ export default function PlanCard({ plan, billingCycle }: { plan: Plan, billingCy
           <h3 className="text-2xl font-semibold text-foreground mb-1">{plan.name}</h3>
           <div className="text-4xl md:text-5xl font-extrabold" style={{ color: 'var(--color-primary)' }}>{priceLabel}</div>
           {sublabel && <div className="text-xs text-foreground-50 mt-1">{sublabel}</div>}
+          {annualLumpSum !== null && (
+            <div className="text-xs text-foreground-50 mt-0.5">Pay ${annualLumpSum} once per year</div>
+          )}
           {plan.tagline && <p className="text-foreground-80 mt-3">{plan.tagline}</p>}
         </div>
 
@@ -51,7 +56,7 @@ export default function PlanCard({ plan, billingCycle }: { plan: Plan, billingCy
         <ul className="space-y-2 mb-4">
           {plan.features.map((f) => (
             <li key={f} className="flex items-start gap-2 text-foreground">
-              <span style={{ color: 'var(--color-secondary)' }}>✓</span>
+              <span style={{ color: 'var(--color-primary)' }}>✓</span>
               <span className="text-foreground-80">{f}</span>
             </li>
           ))}
@@ -63,7 +68,7 @@ export default function PlanCard({ plan, billingCycle }: { plan: Plan, billingCy
             <ul className="space-y-1">
               {plan.limits.map((l) => (
                 <li key={l} className="flex items-start gap-2 text-foreground-80">
-                  <span style={{ color: 'var(--color-secondary)' }}>•</span>
+                  <span style={{ color: 'var(--color-primary)' }}>•</span>
                   <span>{l}</span>
                 </li>
               ))}
@@ -84,6 +89,6 @@ export default function PlanCard({ plan, billingCycle }: { plan: Plan, billingCy
         </div>
       </div>
     </div>
-  )}
-
+  )
+}
 
