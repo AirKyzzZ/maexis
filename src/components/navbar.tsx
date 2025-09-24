@@ -11,6 +11,7 @@ export default function Navbar() {
   const [isApplicationsOpen, setIsApplicationsOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const applicationsTriggerRef = useRef<HTMLDivElement | null>(null);
   const applicationsMenuRef = useRef<HTMLDivElement | null>(null);
   const hoverCloseTimeoutRef = useRef<number | null>(null);
@@ -49,6 +50,10 @@ export default function Navbar() {
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    setIsMounted(true);
   }, []);
 
   useEffect(() => {
@@ -128,7 +133,7 @@ export default function Navbar() {
           <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
             <Link href="/" className="flex items-center">
               <Image
-                src={isDarkTheme ? '/logoBlack.svg' : '/logoWhite.svg'}
+                src={isMounted && isDarkTheme ? '/logoBlack.svg' : '/logoWhite.svg'}
                 alt="Maexis logo"
                 width={42}
                 height={42}
