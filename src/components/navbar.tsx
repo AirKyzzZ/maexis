@@ -125,7 +125,7 @@ export default function Navbar() {
           </div>
 
           {/* Center - Logo */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 z-0 pointer-events-none">
+          <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
             <Link href="/" className="flex items-center">
               <Image
                 src={isDarkTheme ? '/logoBlack.svg' : '/logoWhite.svg'}
