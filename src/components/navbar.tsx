@@ -141,7 +141,7 @@ export default function Navbar() {
           {/* Right side - Theme, Language, CTA buttons */}
           <div className="hidden md:flex items-center space-x-4 relative z-10">
             {/* Theme toggle (pill) - no hover bg in dark mode */}
-            <ToggleTheme className="px-1 py-1 rounded-full hover:bg-gray-100 dark:hover:bg-transparent dark:hover:!bg-transparent transition-all duration-300" />
+            <ToggleTheme className="inline-flex items-center justify-center h-9 px-2 rounded-full hover:bg-gray-100 dark:hover:bg-transparent dark:hover:!bg-transparent transition-all duration-300" />
 
             {/* Language selector (FR + chevron with list) */}
             <div className="relative">
