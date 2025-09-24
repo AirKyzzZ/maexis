@@ -14,6 +14,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       inline-flex items-center justify-center
       font-medium font-sans
       rounded-full
+      cursor-pointer
       transition-all duration-300 ease-in-out
       transform hover:scale-105 active:scale-95
       focus:outline-none focus:ring-2 focus:ring-offset-2

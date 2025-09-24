@@ -7,9 +7,11 @@ import Button  from '@/src/components/button';
 import ToggleTheme from '@/src/components/toggleTheme';
 import { useTranslation } from 'react-i18next';
 import '@/src/i18n';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const { t, i18n } = useTranslation('common');
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isApplicationsOpen, setIsApplicationsOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
@@ -181,7 +183,7 @@ export default function Navbar() {
             <Link href="/login" className="px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 text-foreground dark:text-white hover:bg-[var(--color-secondary)] hover:!text-white dark:hover:bg-[var(--color-primary)] dark:hover:!text-white">
               {t('navbar.login')}
             </Link>
-            <Button variant="primary" size="sm" className="text-white">{t('navbar.signup')}</Button>
+            <Button variant="primary" size="sm" className="text-white" onClick={() => router.push('/signup')}>{t('navbar.signup')}</Button>
           </div>
 
           <button
