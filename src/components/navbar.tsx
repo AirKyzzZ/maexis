@@ -12,6 +12,7 @@ export default function Navbar() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [animateIn, setAnimateIn] = useState(false);
   const applicationsTriggerRef = useRef<HTMLDivElement | null>(null);
   const applicationsMenuRef = useRef<HTMLDivElement | null>(null);
   const hoverCloseTimeoutRef = useRef<number | null>(null);
@@ -54,6 +55,9 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsMounted(true);
+    // trigger entry animation after mount to ensure CSS transitions apply
+    const id = window.setTimeout(() => setAnimateIn(true), 40);
+    return () => window.clearTimeout(id);
   }, []);
 
   useEffect(() => {
@@ -76,7 +80,7 @@ export default function Navbar() {
 
   return (
     <nav 
-      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4"
+      className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4 ${animateIn ? 'animate-navbar-in' : 'opacity-0 -translate-y-2'}`}
     >
       <div className="bg-[var(--color-background)] rounded-2xl md:rounded-full shadow-lg border border-[var(--color-primary)] dark:border-[var(--color-primary)]">
         <div className="relative flex items-center justify-between px-6 py-3">
