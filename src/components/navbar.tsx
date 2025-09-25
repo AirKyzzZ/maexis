@@ -205,8 +205,8 @@ export default function Navbar() {
               </button>
               {isLanguageOpen && (
                 <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-[var(--color-background)] rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50 text-foreground" onClick={(e)=>e.stopPropagation()}>
-                  <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg" onClick={()=>{i18n.changeLanguage('fr'); setIsLanguageOpen(false);}}>FR</button>
-                  <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg" onClick={()=>{i18n.changeLanguage('en'); setIsLanguageOpen(false);}}>EN</button>
+                  <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:!text-white dark:hover:!text-white rounded-lg" onClick={()=>{i18n.changeLanguage('fr'); setIsLanguageOpen(false);}}>FR</button>
+                  <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:!text-white dark:hover:!text-white rounded-lg" onClick={()=>{i18n.changeLanguage('en'); setIsLanguageOpen(false);}}>EN</button>
                 </div>
               )}
             </div>
