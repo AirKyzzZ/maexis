@@ -6,6 +6,7 @@ import I18nProvider from "@/src/components/I18nProvider";
 import RouteLoader from "@/src/components/routeLoader";
 import Loading from "@/app/loading";
 import { Suspense } from "react";
+import Footer from "@/src/components/footer";
 
 const bricolageGrotesk = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesk",
@@ -35,6 +36,7 @@ export default function RootLayout({
           <Navbar />
           <Suspense fallback={<Loading />}>{children}</Suspense>
         </I18nProvider>
+        <Footer />
         <RouteLoader />
       </body>
     </html>
