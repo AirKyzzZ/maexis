@@ -18,6 +18,9 @@ export default function Navbar() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [animateIn, setAnimateIn] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollYRef = useRef<number>(0);
+  const tickingRef = useRef<boolean>(false);
   const applicationsTriggerRef = useRef<HTMLDivElement | null>(null);
   const applicationsMenuRef = useRef<HTMLDivElement | null>(null);
   const hoverCloseTimeoutRef = useRef<number | null>(null);
@@ -65,6 +68,33 @@ export default function Navbar() {
     return () => window.clearTimeout(id);
   }, []);
 
+  // Hide-on-scroll behavior
+  useEffect(() => {
+    const onScroll = () => {
+      const currentY = window.scrollY || 0;
+      if (!tickingRef.current) {
+        window.requestAnimationFrame(() => {
+          const lastY = lastScrollYRef.current || 0;
+          const delta = currentY - lastY;
+          const threshold = 8;
+          if (currentY <= 8) {
+            setIsHidden(false);
+          } else if (delta > threshold) {
+            setIsHidden(true);
+          } else if (delta < -threshold) {
+            setIsHidden(false);
+          }
+          lastScrollYRef.current = currentY;
+          tickingRef.current = false;
+        });
+        tickingRef.current = true;
+      }
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       const target = event.target as Node;
@@ -87,7 +117,7 @@ export default function Navbar() {
     <nav 
       className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl px-4 ${animateIn ? 'animate-navbar-in' : 'opacity-0 -translate-y-2'}`}
     >
-      <div className="bg-[var(--color-background)] rounded-2xl md:rounded-full shadow-lg border border-[var(--color-primary)] dark:border-[var(--color-primary)]">
+      <div className="bg-[var(--color-background)] rounded-2xl md:rounded-full shadow-lg border border-[var(--color-primary)] dark:border-[var(--color-primary)]" style={{ transition: 'transform 300ms ease', transform: `translateY(${isHidden ? '-150%' : '0'})` }}>
         <div className="relative flex items-center justify-between px-6 py-3">
           {/* Left side - Navigation links */}
           <div className="hidden md:flex items-center space-x-1 relative z-10">

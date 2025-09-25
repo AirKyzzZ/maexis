@@ -1,4 +1,9 @@
 import Hero from "@/src/components/home/heroSection";
+import HomeFeaturesSection from "@/src/components/home/featuresSection";
+import HomeBenefitsSection from "@/src/components/home/benefitsSection";
+import HomeCtaSection from "@/src/components/home/ctaSection";
+import HomeMarqueeSection from "@/src/components/home/marqueeSection";
+import HomeShowcaseSection from "@/src/components/home/showcaseSection";
 
 export default async function Home() {
   if (process.env.NODE_ENV === 'development') {
@@ -8,6 +13,11 @@ export default async function Home() {
   return (
     <div className="min-h-screen">
       <Hero />
+      <HomeMarqueeSection />
+      <HomeShowcaseSection />
+      <HomeFeaturesSection />
+      <HomeBenefitsSection />
+      <HomeCtaSection />
     </div>
   );
 }

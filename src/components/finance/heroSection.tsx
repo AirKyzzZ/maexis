@@ -48,6 +48,14 @@ export default function HeroSection() {
           disclaimerText={''}
         />
       </div>
+      {/* Bottom fade to blend into next section */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-36"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, var(--color-background) 85%)'
+        }}
+      />
     </section>
   )
 }

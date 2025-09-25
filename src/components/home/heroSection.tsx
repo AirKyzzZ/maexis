@@ -19,16 +19,6 @@ export default function HeroSection() {
         style={{ background: 'radial-gradient(closest-side, rgba(var(--color-foreground-rgb),0.25), transparent 65%)' }}
         aria-hidden
       />
-
-      {/* Decorative floating icons */}
-      <svg className="absolute left-10 top-28 w-8 h-8 text-[var(--color-secondary)] opacity-70 float-slow" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z"/>
-      </svg>
-      <svg className="absolute right-12 bottom-32 w-6 h-6 text-[var(--color-primary)] opacity-60 float-slow" style={{ animationDelay: '1.2s' }} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>
-      </svg>
-
       <Hero
         title={(
           <h1 className="text-5xl sm:text-6xl font-bold mb-6">
@@ -48,6 +38,31 @@ export default function HeroSection() {
         primaryButton={{ label: 'Get Started', variant: 'primary', size: 'lg' }}
         secondaryButton={{ label: 'Learn More', variant: 'outline', size: 'lg' }}
         disclaimerText={'GDPR Compliant - No credit card required'}
+      />
+
+      {/* Soft blurred light rays */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[140%] h-[140%] opacity-15 blur-3xl"
+        style={{
+          background: 'conic-gradient(from 200deg at 50% 30%, var(--color-secondary), transparent 40%, var(--color-primary), transparent 80%)'
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-40 right-[-10%] w-[70%] h-[70%] opacity-10 blur-2xl rotate-12"
+        style={{
+          background: 'conic-gradient(from 120deg at 30% 60%, var(--color-primary), transparent 55%, var(--color-secondary))'
+        }}
+      />
+
+      {/* Bottom fade to background to avoid hard edge with next section */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-36"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, var(--color-background) 85%)'
+        }}
       />
     </section>
   )
